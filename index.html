@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#F2F8FA">
+  <meta name="description" content="GI SMART POND - Smart aquaculture pond monitoring dashboard">
+  <title>GI SMART POND</title>
+  <link rel="manifest" href="./manifest.json">
+  <link rel="icon" href="./assets/icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="./css/styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="#" aria-label="GI SMART POND Home">
+        <span class="brand-mark"><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M7 25c8-11 17-11 25 0s8 11 9 1M7 34c8-11 17-11 25 0s8 11 9 1" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round"/><path d="M24 7c-5 7-7 10-7 14a7 7 0 0 0 14 0c0-4-2-7-7-14Z" fill="currentColor" opacity=".22"/></svg></span>
+        <span class="brand-copy"><strong>GI SMART POND</strong><small>SMART AQUACULTURE MONITORING</small></span>
+      </a>
+      <div class="top-actions">
+        <span class="demo-pill"><i></i> DEMO MODE</span>
+        <button class="icon-button" id="menuButton" aria-label="Open menu">☰</button>
+      </div>
+    </header>
+
+    <main>
+      <section class="farm-heading card">
+        <div>
+          <span class="eyebrow">CURRENT FARM</span>
+          <h1 id="farmName">Suri Aqua Farm</h1>
+          <p><span class="pond-dot"></span> Pond ID: <b id="pondId">GI-POND-001</b> <span class="meta-separator">•</span> Andhra Pradesh</p>
+        </div>
+        <button class="edit-farm" id="editFarmBtn" aria-label="Edit farm name">✎</button>
+      </section>
+
+      <section class="summary-grid" aria-label="Power status">
+        <article class="power-card eb-card">
+          <div class="card-top"><span class="power-icon">ϟ</span><span class="status-chip on" id="ebChip">AVAILABLE</span></div>
+          <div class="power-label">EB SUPPLY</div>
+          <div class="power-value" id="ebValue">ON</div>
+          <div class="power-sub">Three-phase mains supply</div>
+          <button class="demo-toggle" data-toggle="eb">Toggle demo status <span>↗</span></button>
+        </article>
+        <article class="power-card dg-card">
+          <div class="card-top"><span class="power-icon">▣</span><span class="status-chip off" id="dgChip">UNAVAILABLE</span></div>
+          <div class="power-label">DG OUTPUT</div>
+          <div class="power-value" id="dgValue">OFF</div>
+          <div class="power-sub">Generator output voltage</div>
+          <button class="demo-toggle" data-toggle="dg">Toggle demo status <span>↗</span></button>
+        </article>
+      </section>
+
+      <section class="section-heading">
+        <div><span class="eyebrow">LIVE OVERVIEW</span><h2>Aerator Status</h2></div>
+        <span class="count-pill"><b id="runningCount">8</b> / 10 ON</span>
+      </section>
+      <section class="progress-card card">
+        <div class="progress-copy"><strong><span id="runningBig">08</span> <small>Running starters</small></strong><span id="stoppedCount">2 stopped</span></div>
+        <div class="progress-track"><span id="progressFill" style="width:80%"></span></div>
+      </section>
+
+      <section class="aerator-grid" id="aeratorGrid" aria-label="Ten aerator statuses"></section>
+
+      <section class="section-heading report-heading">
+        <div><span class="eyebrow">POND ACTIVITY</span><h2>Today's Snapshot</h2></div>
+        <span class="date-label" id="todayLabel"></span>
+      </section>
+      <section class="snapshot-grid">
+        <article class="snapshot-card card">
+          <span class="snapshot-icon green">◷</span><span class="snapshot-label">Starter ON time</span>
+          <strong>--:--</strong><small>Demo data not calculated</small>
+        </article>
+        <article class="snapshot-card card">
+          <span class="snapshot-icon amber">ϟ</span><span class="snapshot-label">Power interruptions</span>
+          <strong>--</strong><small>Waiting for event data</small>
+        </article>
+      </section>
+
+      <section class="events-card card">
+        <div class="events-title"><div><span class="eyebrow">RECENT ACTIVITY</span><h2>Event History</h2></div><button id="viewEvents">View all <span>→</span></button></div>
+        <div id="eventList" class="event-list"></div>
+      </section>
+    </main>
+
+    <nav class="bottom-nav" aria-label="Main navigation">
+      <button class="nav-item active" data-page="home"><span>⌂</span><small>Home</small></button>
+      <button class="nav-item" data-page="aerators"><span>✥</span><small>Aerators</small></button>
+      <button class="nav-item" data-page="power"><span>ϟ</span><small>Power</small></button>
+      <button class="nav-item" data-page="reports"><span>▥</span><small>Reports</small></button>
+    </nav>
+  </div>
+
+  <dialog id="farmDialog" class="modal">
+    <form method="dialog" id="farmForm">
+      <div class="modal-head"><div><span class="eyebrow">POND SETTINGS</span><h2>Farm details</h2></div><button class="close-button" value="cancel" aria-label="Close">×</button></div>
+      <label for="farmInput">Farm name</label><input id="farmInput" maxlength="40" value="Suri Aqua Farm" required>
+      <label for="pondInput">Pond ID</label><input id="pondInput" maxlength="24" value="GI-POND-001" required>
+      <button class="primary-button" id="saveFarm" value="save">Save details</button>
+    </form>
+  </dialog>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="./js/app.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,19 @@
+{
+  "name": "GI SMART POND",
+  "short_name": "GI SMART POND",
+  "description": "Smart aquaculture pond monitoring",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#F2F8FA",
+  "theme_color": "#F2F8FA",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "./assets/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
