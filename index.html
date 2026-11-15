@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#F2F8FA">
+  <meta name="description" content="GI SMART POND — shrimp pond electrical monitoring demo dashboard.">
+  <title>GI SMART POND</title>
+  <link rel="manifest" href="./manifest.json">
+  <link rel="icon" href="./assets/logo.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="./css/theme.css">
+  <link rel="stylesheet" href="./css/layout.css">
+  <link rel="stylesheet" href="./css/components.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <a class="brand" href="#dashboard" data-page="dashboard" aria-label="GI SMART POND home">
+        <span class="brand-mark"><img src="./assets/logo.svg" alt=""></span>
+        <span class="brand-copy"><strong>GI SMART POND</strong><small>SMART FARM MONITORING</small></span>
+      </a>
+      <div class="farm-mini">
+        <span class="eyebrow">CURRENT FARM</span>
+        <strong id="sidebarFarmName">Suri Aqua Farm</strong>
+        <span id="sidebarPondId">Pond ID: GI-POND-001</span>
+      </div>
+      <nav class="main-nav" aria-label="Main navigation">
+        <button class="nav-link active" data-page="dashboard"><span class="nav-icon">⌂</span>Dashboard</button>
+        <button class="nav-link" data-page="aerators"><span class="nav-icon">◉</span>Aerators <span class="nav-count">10</span></button>
+        <button class="nav-link" data-page="power"><span class="nav-icon">ϟ</span>Power</button>
+        <button class="nav-link" data-page="reports"><span class="nav-icon">▥</span>Reports</button>
+        <button class="nav-link" data-page="events"><span class="nav-icon">◷</span>Event History</button>
+        <button class="nav-link" data-page="settings"><span class="nav-icon">⚙</span>Settings</button>
+      </nav>
+      <div class="sidebar-bottom">
+        <div class="demo-note"><span class="pulse-dot"></span><div><strong>Demo mode active</strong><small>Sample data only</small></div></div>
+        <div class="sidebar-foot">GI SMART POND <span>Frontend Demo V1.0</span></div>
+      </div>
+    </aside>
+
+    <main class="main-area">
+      <header class="topbar">
+        <button class="mobile-menu icon-button" id="menuButton" aria-label="Open navigation">☰</button>
+        <div class="topbar-heading"><span class="eyebrow">POND MONITORING</span><h1 id="pageHeading">Dashboard</h1></div>
+        <div class="topbar-actions">
+          <span class="demo-pill"><span class="pulse-dot"></span> DEMO</span>
+          <button class="icon-button notification-button" id="notificationButton" aria-label="Notifications">♧<i></i></button>
+          <div class="avatar">GI</div>
+        </div>
+      </header>
+
+      <section class="page-content">
+        <section class="page-view active" id="page-dashboard">
+          <div class="welcome-row">
+            <div><p class="eyebrow">LIVE OVERVIEW <span class="live-label"><span class="pulse-dot"></span> SIMULATED</span></p><h2 id="welcomeFarmName">Suri Aqua Farm</h2><p class="muted" id="welcomePondId">Pond ID: GI-POND-001 <span class="dot-separator">•</span> 10 Aerators</p></div>
+            <div class="date-chip"><span>◷</span><span id="currentDate">Today</span></div>
+          </div>
+          <div class="stats-grid">
+            <article class="stat-card"><div class="stat-top"><span class="stat-icon green">◉</span><span class="stat-caption">STARTER STATUS</span></div><div class="stat-value"><strong id="runningCount">07</strong><span>/ 10</span></div><div class="stat-bottom"><span class="status-dot green-bg"></span><span id="runningCaption">7 running</span><span class="stat-trend">● Demo</span></div></article>
+            <article class="stat-card"><div class="stat-top"><span class="stat-icon aqua">ϟ</span><span class="stat-caption">EB SUPPLY</span></div><div class="power-value" id="ebValue"><span class="status-dot green-bg"></span>Available</div><div class="stat-bottom"><span class="muted">Main supply status</span><span class="tag tag-eb">EB</span></div></article>
+            <article class="stat-card"><div class="stat-top"><span class="stat-icon blue">▰</span><span class="stat-caption">DG OUTPUT</span></div><div class="power-value" id="dgValue"><span class="status-dot grey-bg"></span>Not Available</div><div class="stat-bottom"><span class="muted">Generator output status</span><span class="tag tag-dg">DG</span></div></article>
+            <article class="stat-card"><div class="stat-top"><span class="stat-icon amber">◷</span><span class="stat-caption">TODAY'S RUNTIME</span></div><div class="stat-value"><strong id="totalRuntime">68.4</strong><span>hrs</span></div><div class="stat-bottom"><span class="muted">Combined sample runtime</span><span class="stat-trend">↗ Demo</span></div></article>
+          </div>
+          <div class="section-heading"><div><h3>Aerator Overview</h3><p class="muted">Starter feedback status · 2 HP × 3 Phase</p></div><button class="text-button" data-goto="aerators">View all <span>→</span></button></div>
+          <div class="aerator-grid" id="dashboardAerators"></div>
+          <div class="bottom-grid">
+            <article class="panel power-panel"><div class="panel-heading"><div><h3>Power Availability</h3><p class="muted">Supply status overview</p></div><span class="panel-icon">ϟ</span></div><div class="power-row"><span class="power-symbol eb-symbol">EB</span><div class="power-info"><strong>EB Supply</strong><small>Main incoming supply</small></div><strong class="power-state" id="ebPanelState">Available</strong></div><div class="power-row"><span class="power-symbol dg-symbol">DG</span><div class="power-info"><strong>DG Output</strong><small>Generator output supply</small></div><strong class="power-state muted" id="dgPanelState">Not available</strong></div><button class="outline-button full-button" data-goto="power">View power details</button></article>
+            <article class="panel activity-panel"><div class="panel-heading"><div><h3>Recent Activity</h3><p class="muted">Latest demo events</p></div><button class="text-button" data-goto="events">View all →</button></div><div id="recentActivity" class="activity-list"></div></article>
+          </div>
+          <p class="disclaimer">Demo dashboard — statuses and runtime are sample values, not connected to pond equipment.</p>
+        </section>
+
+        <section class="page-view" id="page-aerators">
+          <div class="page-intro"><div><p class="eyebrow">EQUIPMENT STATUS</p><h2>Aerators</h2><p class="muted">10 starter feedback channels · Demo data</p></div><div class="filter-wrap"><label for="aeratorFilter">Show</label><select id="aeratorFilter"><option value="all">All aerators</option><option value="running">Running</option><option value="stopped">Stopped</option></select></div></div>
+          <div class="summary-strip"><div><strong id="aeroRunningSummary">7</strong><span>Running</span></div><div><strong id="aeroStoppedSummary">3</strong><span>Stopped</span></div><div><strong>10</strong><span>Total channels</span></div></div>
+          <div class="aerator-grid large-grid" id="allAerators"></div>
+          <p class="disclaimer">“Running” here means simulated starter auxiliary feedback ON. It does not confirm paddle-wheel rotation.</p>
+        </section>
+
+        <section class="page-view" id="page-power">
+          <div class="page-intro"><div><p class="eyebrow">ELECTRICAL SUPPLY</p><h2>Power Monitoring</h2><p class="muted">EB and DG output availability · Demo data</p></div></div>
+          <div class="power-detail-grid">
+            <article class="power-detail-card eb-detail"><div class="power-detail-top"><span class="power-symbol eb-symbol">EB</span><span class="tag tag-eb">MAIN SUPPLY</span></div><h3>EB Supply</h3><p class="muted">Incoming mains voltage availability</p><div class="big-state" id="ebDetailState">Available</div><div class="state-foot"><span class="status-dot green-bg"></span><span id="ebSince">Sample state · demo</span></div></article>
+            <article class="power-detail-card dg-detail"><div class="power-detail-top"><span class="power-symbol dg-symbol">DG</span><span class="tag tag-dg">GENERATOR</span></div><h3>DG Output</h3><p class="muted">Generator output voltage availability</p><div class="big-state" id="dgDetailState">Not Available</div><div class="state-foot"><span class="status-dot grey-bg"></span><span id="dgSince">Sample state · demo</span></div></article>
+          </div>
+          <article class="panel"><div class="panel-heading"><div><h3>Power Event Summary</h3><p class="muted">Illustrative events for this demo</p></div></div><div class="table-wrap"><table><thead><tr><th>Time</th><th>Source</th><th>Event</th><th>Status</th></tr></thead><tbody id="powerEventsTable"></tbody></table></div></article>
+          <div class="demo-controls panel"><div><h3>Demo Controls</h3><p class="muted">Change sample supply status to preview the dashboard.</p></div><div class="control-buttons"><button class="outline-button" id="toggleEB">Toggle EB</button><button class="outline-button" id="toggleDG">Toggle DG</button></div></div>
+          <p class="disclaimer">EB/DG indicators represent simulated voltage availability only. They do not indicate DG engine run status.</p>
+        </section>
+
+        <section class="page-view" id="page-reports">
+          <div class="page-intro"><div><p class="eyebrow">PERFORMANCE INSIGHTS</p><h2>Reports</h2><p class="muted">Illustrative runtime summaries · Demo data</p></div><div class="filter-wrap"><label for="reportPeriod">Period</label><select id="reportPeriod"><option value="daily">Today</option><option value="weekly">Last 7 days</option><option value="monthly">This month</option></select></div></div>
+          <div class="report-highlight"><div><span class="eyebrow">COMBINED STARTER RUNTIME</span><strong id="reportTotal">68.4 <small>hrs</small></strong><p id="reportCaption">Today's sample runtime across 10 aerators</p></div><div class="report-art">▥</div></div>
+          <div class="stats-grid report-stats"><article class="stat-card"><span class="stat-caption">AVERAGE PER AERATOR</span><div class="stat-value"><strong id="averageRuntime">6.84</strong><span>hrs</span></div></article><article class="stat-card"><span class="stat-caption">HIGHEST RUNTIME</span><div class="stat-value"><strong id="highestRuntime">8.2</strong><span>hrs</span></div></article><article class="stat-card"><span class="stat-caption">LOWEST RUNTIME</span><div class="stat-value"><strong id="lowestRuntime">4.1</strong><span>hrs</span></div></article><article class="stat-card"><span class="stat-caption">ACTIVE CHANNELS</span><div class="stat-value"><strong id="activeChannels">7</strong><span>/ 10</span></div></article></div>
+          <article class="panel chart-panel"><div class="panel-heading"><div><h3>Aerator Runtime</h3><p class="muted">Hours by starter channel</p></div><span class="tag tag-eb">HOURS</span></div><div class="bar-chart" id="runtimeChart" role="img" aria-label="Sample runtime bar chart"></div></article>
+          <p class="disclaimer">Reports use fixed sample data for interface preview. Actual runtime calculations will be implemented with timestamped events in a later phase.</p>
+        </section>
+
+        <section class="page-view" id="page-events">
+          <div class="page-intro"><div><p class="eyebrow">SYSTEM ACTIVITY</p><h2>Event History</h2><p class="muted">Simulated starter and power transitions</p></div><button class="outline-button" id="clearDemoEvents">Reset demo events</button></div>
+          <article class="panel"><div class="panel-heading"><div><h3>Recent Events</h3><p class="muted">Newest events first</p></div><span class="tag tag-eb" id="eventCount">0 EVENTS</span></div><div class="table-wrap"><table><thead><tr><th>Time</th><th>Channel</th><th>Event</th><th>Status</th></tr></thead><tbody id="eventsTable"></tbody></table></div></article>
+        </section>
+
+        <section class="page-view" id="page-settings">
+          <div class="page-intro"><div><p class="eyebrow">CONFIGURATION</p><h2>Settings</h2><p class="muted">Customize this demo dashboard</p></div></div>
+          <div class="settings-grid">
+            <form class="panel settings-form" id="farmSettings"><div class="panel-heading"><div><h3>Farm Details</h3><p class="muted">Displayed on the dashboard</p></div><span class="panel-icon">⌂</span></div><label for="farmNameInput">Farm Name</label><input id="farmNameInput" maxlength="48" value="Suri Aqua Farm" required><label for="pondIdInput">Pond ID</label><input id="pondIdInput" maxlength="32" value="GI-POND-001" required><button class="primary-button" type="submit">Save Farm Details</button><p class="form-message" id="settingsMessage" aria-live="polite"></p></form>
+            <article class="panel"><div class="panel-heading"><div><h3>Application</h3><p class="muted">Build information</p></div><span class="panel-icon">ⓘ</span></div><div class="settings-row"><span>Application</span><strong>GI SMART POND</strong></div><div class="settings-row"><span>Version</span><strong>Frontend Demo V1.0</strong></div><div class="settings-row"><span>Operating mode</span><strong class="demo-text">Demo only</strong></div><div class="settings-row"><span>Hardware connection</span><strong>Not connected</strong></div><div class="settings-row"><span>Data source</span><strong>Local sample data</strong></div></article>
+            <article class="panel safety-panel"><span class="safety-icon">ⓘ</span><div><h3>Demo environment</h3><p>This version does not connect to starters, voltage relays, ESP32, Modbus or Firebase. All controls change sample values in this browser only.</p></div></article>
+          </div>
+        </section>
+      </section>
+      <footer class="mobile-footer"><span>GI SMART POND</span><span>Frontend Demo V1.0</span></footer>
+    </main>
+  </div>
+  <div class="mobile-overlay" id="mobileOverlay"></div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="./js/demo-data.js"></script>
+  <script src="./js/aerators.js"></script>
+  <script src="./js/power.js"></script>
+  <script src="./js/reports.js"></script>
+  <script src="./js/events.js"></script>
+  <script src="./js/settings.js"></script>
+  <script src="./js/dashboard.js"></script>
+  <script src="./js/app.js"></script>
+</body>
+</html>

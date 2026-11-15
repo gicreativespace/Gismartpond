@@ -1,0 +1,26 @@
+{
+  "id": "./",
+  "name": "GI SMART POND",
+  "short_name": "GI SMART POND",
+  "description": "Shrimp pond electrical monitoring demo dashboard",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#F2F8FA",
+  "theme_color": "#F2F8FA",
+  "icons": [
+    {
+      "src": "./assets/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "./assets/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}
